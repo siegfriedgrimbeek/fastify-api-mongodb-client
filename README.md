@@ -4,6 +4,18 @@
 
 > A Node.js project
 
+A script to seed data into the database, can be run with:
+
+``` bash
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080
+npm run seed
+```
+
+Script can be found here: `./src/helpers/seed.js`
+
 ### Build Setup
 
 ``` bash

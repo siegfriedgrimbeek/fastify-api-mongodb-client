@@ -7,6 +7,13 @@ const carController = require('../controllers/carController')
 const routes = [
   {
     method: 'GET',
+    url: '/',
+    handler: async function (req, reply) {
+      reply.send({ hello: 'world' })
+    }
+  },
+  {
+    method: 'GET',
     url: '/api/cars',
     handler: async function (req, reply) {
       const collection = this.mongo.db.collection('cars')

@@ -48,7 +48,6 @@ exports.updateCar = async (req, carsCollection) => {
   }
 }
 
-
 // Delete a car
 exports.deleteCar = async (req, carsCollection) => {
   try {
