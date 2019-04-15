@@ -1,6 +1,6 @@
 // Import external dependancies
 const faker = require('faker')
-const ObjectId = require("bson").ObjectId
+const getValues = require("lodash").values
 
 // Import internal dependancies
 const fastify = require('../server/')
@@ -37,8 +37,8 @@ const generateCarData = (usersIds) => {
   let carData = []
   let i = 0
 
-  while (i < 2000) {
-    const owner_id = new ObjectId(faker.random.arrayElement(usersIds))
+  while (i < 10000) {
+    const owner_id = faker.random.arrayElement(usersIds)
     const carObject = faker.random.arrayElement(cars)
     const title = faker.random.arrayElement(carObject.models)
     const price = faker.random.number({min:5000, max:30000})
@@ -63,8 +63,8 @@ const generateServiceData = (carsIds) => {
   let serviceData = []
   let i = 0
 
-  while (i < 5000) {
-    const car_id = new ObjectId(faker.random.arrayElement(carsIds))
+  while (i < 50000) {
+    const car_id = faker.random.arrayElement(carsIds)
     const name = faker.random.arrayElement(serviceGarages)
     const date = faker.fake('{{date.past}}')
 
@@ -90,11 +90,11 @@ fastify.ready().then(async () => {
 
   // Insert users and get ID's of inserted users
   const users = await userCollection.insertMany(generateUserData())
-  const usersIds = users.insertedIds
+  const usersIds = getValues(users.insertedIds)
 
   // Insert cars and get ID's of inserted cars
   const cars = await carCollection.insertMany(generateCarData(usersIds))
-  const carsIds = cars.insertedIds
+  const carsIds = getValues(cars.insertedIds)
 
   // Insert services
   const services = await serviceCollection.insertMany(generateServiceData(carsIds))
@@ -102,7 +102,7 @@ fastify.ready().then(async () => {
   console.log(`Data successfully seeded:
     - ${users.insertedCount} users added.
     - ${cars.insertedCount} cars added.
-    - ${services.insertedCount} cars added.
+    - ${services.insertedCount} services added.
   `)
 
   process.exit()
