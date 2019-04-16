@@ -39,7 +39,7 @@ exports.updateCar = async (req, carsCollection) => {
     const id = req.params.id
     const updateData  = req.body
     const updateResponse = await carsCollection.updateOne(
-      { _id: ObjectId(id) },
+      { _id: new ObjectId(id) },
       { $set: updateData  }
     )
     return updateResponse
@@ -52,7 +52,7 @@ exports.updateCar = async (req, carsCollection) => {
 exports.deleteCar = async (req, carsCollection) => {
   try {
     const id = req.params.id
-    const deleteResponse = await carsCollection.deleteOne({_id: ObjectId(id)})
+    const deleteResponse = await carsCollection.deleteOne({_id: new ObjectId(id)})
     return deleteResponse
   } catch (err) {
     throw boom.boomify(err)

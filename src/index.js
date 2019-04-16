@@ -19,6 +19,7 @@ routes.forEach((route, index) => {
 const start = async () => {
   try {
     await fastify.listen(process.env.PORT)
+    fastify.log.info('Documentation available at: http://localhost:3000/documentation/')
     fastify.swagger()
   } catch (err) {
     fastify.log.error(err)

@@ -5,11 +5,21 @@ exports.addCarSchema = {
   body: {
     type: 'object',
     properties: {
-      title: { type: 'string' },
-      brand: { type: 'string' },
-      price: { type: 'string' },
-      age: { type: 'number' },
-      services: { type: 'object' }
+      title: {
+        type: 'string'
+      },
+      brand: {
+        type: 'string'
+      },
+      price: {
+        type: 'string'
+      },
+      age: {
+        type: 'number'
+      },
+      owner_id: {
+        type: 'string'
+      }
     }
   },
   response: {
@@ -17,13 +27,12 @@ exports.addCarSchema = {
       description: 'Successful response',
       type: 'object',
       properties: {
-        _id: { type: 'string' },
-        title: { type: 'string' },
-        brand: { type: 'string' },
-        price: { type: 'string' },
-        age: { type: 'number' },
-        services: { type: 'object' },
-        __v: { type: 'number' }
+        n: {
+          type: 'number'
+        },
+        ok: {
+          type: 'number'
+        }
       }
     }
   }
@@ -33,14 +42,33 @@ exports.updateCarSchema = {
   description: 'Updates a car',
   tags: ['cars'],
   summary: 'Updates a car with given values',
+  params: {
+    type: 'object',
+    properties: {
+      id: {
+        type: 'string',
+        description: 'ID of the car to update.'
+      }
+    }
+  },
   body: {
     type: 'object',
     properties: {
-      title: { type: 'string' },
-      brand: { type: 'string' },
-      price: { type: 'string' },
-      age: { type: 'number' },
-      services: { type: 'object' }
+      title: {
+        type: 'string'
+      },
+      brand: {
+        type: 'string'
+      },
+      price: {
+        type: 'string'
+      },
+      age: {
+        type: 'number'
+      },
+      owner_id: {
+        type: 'string'
+      }
     }
   },
   response: {
@@ -48,13 +76,12 @@ exports.updateCarSchema = {
       description: 'Successful response',
       type: 'object',
       properties: {
-        _id: { type: 'string' },
-        title: { type: 'string' },
-        brand: { type: 'string' },
-        price: { type: 'string' },
-        age: { type: 'number' },
-        services: { type: 'object' },
-        __v: { type: 'number' }
+        n: {
+          type: 'number'
+        },
+        ok: {
+          type: 'number'
+        }
       }
     }
   }
@@ -69,11 +96,43 @@ exports.getCarsSchema = {
 exports.getSingleCarSchema = {
   description: 'Gets single car',
   tags: ['cars'],
-  summary: 'Gets a single car and its details'
+  summary: 'Gets a single car and its details',
+  params: {
+    type: 'object',
+    properties: {
+      id: {
+        type: 'string',
+        description: 'ID of the car to get.'
+      }
+    }
+  }
 }
 
 exports.deleteCarsSchema = {
   description: 'Deletes a car',
   tags: ['cars'],
-  summary: 'Deletes a car'
+  summary: 'Deletes a car',
+  params: {
+    type: 'object',
+    properties: {
+      id: {
+        type: 'string',
+        description: 'ID of the car to delete.'
+      }
+    }
+  },
+  response: {
+    200: {
+      description: 'Successful response',
+      type: 'object',
+      properties: {
+        n: {
+          type: 'number',
+        },
+        ok: {
+          type: 'number'
+        }
+      }
+    }
+  }
 }

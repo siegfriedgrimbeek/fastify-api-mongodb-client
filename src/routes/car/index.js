@@ -32,7 +32,8 @@ const carRoutes = [
     handler: async function (req, reply) {
       const collection = this.mongo.db.collection('cars')
       const data = await carController.addCar(req, collection)
-      reply.send(data)
+      console.log(data.result)
+      reply.send(data.result)
     }
   },
   {
